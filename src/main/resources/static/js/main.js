@@ -121,6 +121,26 @@
         loop: true,
     });
 
-    
+
+    function confirmClose() {
+    return confirm("정말 창을 닫으시겠습니까?");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const backBtn = document.getElementById("backBtn");
+
+    backBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 기본 이동 막기
+        if (confirmClose()) {
+        window.close(); // 확인 누르면 창 닫기
+        }
+    });
+    });
+
+
+
+
+
+
 })(jQuery);
 
