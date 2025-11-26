@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.service.BlogService;
+import java.util.Optional;
+import java.lang.StackWalker.Option;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,4 +31,28 @@ public class BlogController {
         return "redirect:/article_list";
     }
 
+    @GetMapping("/article_edit/{id}") // 게시판 링크 지정
+    public String article_edit(@PathVariable Long id, Model model) {
+        Optional<Article> list = blogService.findById(id);
+
+        if (list.isPresent()) {
+            model.addAttribute("article", list.get());
+        } else {
+             // 처리할로직추가(예: 오류페이지로리다이렉트, 예외처리등)
+            return "error/404"; // 오류 처리 페이지로 이동
+        }
+        return "article_edit"; //.HTML 연결
+    }
+
+    @PutMapping("/api/article_edit/{id}")
+    public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
+        blogService.update(id, request);
+        return "redirect:/article_list"; // 글 수정 이후 .html 연결
+    }
+
+    @DeleteMapping("/api/article_delete/{id}")
+    public String deleteArticle(@PathVariable Long id) {
+        blogService.delete(id);
+        return "redirect:/article_list";
+    }
 }
