@@ -55,7 +55,6 @@ public class DemoController {
     model.addAttribute("data6", test2);
     System.out.println("데이터 출력 디버그 : " + test);
     System.out.println("데이터 출력 디버그 : " + test1);
-    System.out.println("데이터 출력 디버그 : " + test2);
     return "testdb";
     }
 
