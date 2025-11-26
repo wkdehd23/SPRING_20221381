@@ -39,7 +39,7 @@ public class BlogController {
             model.addAttribute("article", list.get());
         } else {
              // 처리할로직추가(예: 오류페이지로리다이렉트, 예외처리등)
-            return "error/404"; // 오류 처리 페이지로 이동
+            return "/error_page/article_error"; // 오류 처리 페이지로 이동(이름 수정됨)
         }
         return "article_edit"; //.HTML 연결
     }
