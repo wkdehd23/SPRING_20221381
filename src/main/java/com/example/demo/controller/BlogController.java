@@ -3,9 +3,8 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import com.example.demo.model.domain.Article;
-import com.example.demo.model.service.AddArticleRequest;
-import com.example.demo.model.service.BlogService;
+import com.example.demo.model.domain.*;
+import com.example.demo.model.service.*;
 import java.util.Optional;
 import java.lang.StackWalker.Option;
 import java.util.List;
@@ -61,4 +60,12 @@ public class BlogController {
         blogService.delete(id);
         return "redirect:/article_list";
     }
+
+    @GetMapping("/board_list") // 새로운 게시판 링크 지정
+    public String board_list(Model model) {
+    List<Board> boards = blogService.findAllBoards(); // 게시판 전체 리스트, 기존 Article에서 Board로 변경됨
+    model.addAttribute("boards", boards); // 모델에 추가
+    return "board_list"; // .HTML 연결
+    }
+
 }

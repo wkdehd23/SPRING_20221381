@@ -5,19 +5,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.model.domain.Article;
-import com.example.demo.model.repository.BlogRepository;
+import com.example.demo.model.domain.*;
+import com.example.demo.model.repository.*;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class BlogService {
     @Autowired
-    private final BlogRepository blogRepository;
+    // private final BlogRepository blogRepository;
     
-    public List<Article> findAll() {
-        return blogRepository.findAll();
-    }
+    // public List<Article> findAll() {
+    //     return blogRepository.findAll();
+    // }
     
     public Article save(AddArticleRequest request) {
         // DTO가없는경우이곳에직접구현가능
@@ -29,9 +29,9 @@ public class BlogService {
         return blogRepository.save(request.toEntity());
     }
 
-    public Optional<Article> findById(Long id) { // 게시판 특정 글 조회
-        return blogRepository.findById(id);
-    }
+    // public Optional<Article> findById(Long id) { // 게시판 특정 글 조회
+    //     return blogRepository.findById(id);
+    // }
 
     public void update(Long id, AddArticleRequest request) {
         Optional<Article> optionalArticle = blogRepository.findById(id); // 단일 글 조회
@@ -43,5 +43,15 @@ public class BlogService {
 
     public void delete(Long id) {
         blogRepository.deleteById(id);
+    }
+
+    private final BoardRepository boardRepository;
+
+    public List<Board> findAllBoards() {
+        return boardRepository.findAll();
+    }
+
+    public Optional<Board> findBoardById(Long id) {
+        return boardRepository.findById(id);
     }
 }
