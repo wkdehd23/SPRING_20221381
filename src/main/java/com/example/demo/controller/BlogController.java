@@ -63,7 +63,7 @@ public class BlogController {
 
     @GetMapping("/board_list") // 새로운 게시판 링크 지정
     public String board_list(Model model) {
-    List<Board> boards = blogService.findAllBoards(); // 게시판 전체 리스트, 기존 Article에서 Board로 변경됨
+    List<Board> boards = blogService.findAll(); // 게시판 전체 리스트, 기존 Article에서 Board로 변경됨
     model.addAttribute("boards", boards); // 모델에 추가
     return "board_list"; // .HTML 연결
     }
