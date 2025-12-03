@@ -32,13 +32,19 @@ public class BlogController {
     }
 
     @GetMapping("/article_edit/{id}") // 게시판 링크 지정
-    public String article_edit(@PathVariable Long id, Model model) {
-        Optional<Article> list = blogService.findById(id);
+    public String article_edit(@PathVariable String id, Model model) {
+
+        if(!id.matches("\\d+")) {
+            return "/error_page/article_error2";
+        }
+
+        Long longId = Long.parseLong(id);
+        Optional<Article> list = blogService.findById(longId);
 
         if (list.isPresent()) {
             model.addAttribute("article", list.get());
         } else {
-             // 처리할로직추가(예: 오류페이지로리다이렉트, 예외처리등)
+            // 처리할로직추가(예: 오류페이지로리다이렉트, 예외처리등)
             return "/error_page/article_error"; // 오류 처리 페이지로 이동(이름 수정됨)
         }
         return "article_edit"; //.HTML 연결
