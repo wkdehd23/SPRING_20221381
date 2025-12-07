@@ -32,26 +32,26 @@ public class BlogService {
         return boardRepository.findById(id);
     }
 
-    // public Article save(AddArticleRequest request) {
-    //     // DTO가없는경우이곳에직접구현가능
-    //     // public ResponseEntity<Article> addArticle(@RequestParam String title, @RequestParam String content) {
-    //     // Article article = Article.builder()
-    //     // .title(title)
-    //     // .content(content)
-    //     // .build();
-    //     return blogRepository.save(request.toEntity());
-    // }
+    public Board save(AddArticleRequest request) {
+        // DTO가없는경우이곳에직접구현가능
+        // public ResponseEntity<Article> addArticle(@RequestParam String title, @RequestParam String content) {
+        // Article article = Article.builder()
+        // .title(title)
+        // .content(content)
+        // .build();
+        return boardRepository.save(request.toEntity());
+    }
 
-    // public void update(Long id, AddArticleRequest request) {
-    //     Optional<Article> optionalArticle = blogRepository.findById(id); // 단일 글 조회
-    //     optionalArticle.ifPresent(article -> {
-    //         article.update(request.getTitle(), request.getContent()); //값을 수정
-    //         blogRepository.save(article); // Article 객체에 저장
-    //     });
-    // }
+    public void update(Long id, AddArticleRequest request) {
+        Optional<Board> optionalBoard = boardRepository.findById(id); // 단일 글 조회
+        optionalBoard.ifPresent(board -> {
+            board.update(request.getTitle(), request.getContent()); //값을 수정
+            boardRepository.save(board); // Board 객체에 저장
+        });
+    }
 
-    // public void delete(Long id) {
-    //     blogRepository.deleteById(id);
-    // }
+    public void delete(Long id) {
+        boardRepository.deleteById(id);
+    }
 
 }
