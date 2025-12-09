@@ -32,7 +32,7 @@ public class BlogService {
         return boardRepository.findById(id);
     }
 
-    public Board save(AddArticleRequest request) {
+    public Board save(AddBoardRequest request) {
         // DTO가없는경우이곳에직접구현가능
         // public ResponseEntity<Article> addArticle(@RequestParam String title, @RequestParam String content) {
         // Article article = Article.builder()
@@ -42,7 +42,7 @@ public class BlogService {
         return boardRepository.save(request.toEntity());
     }
 
-    public void update(Long id, AddArticleRequest request) {
+    public void update(Long id, AddBoardRequest request) {
         Optional<Board> optionalBoard = boardRepository.findById(id); // 단일 글 조회
         optionalBoard.ifPresent(board -> {
             board.update(request.getTitle(), request.getContent()); //값을 수정
