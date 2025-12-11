@@ -9,11 +9,19 @@ import com.example.demo.model.domain.*;
 public class AddArticleRequest {
     private String title;
     private String content;
+    private String user;
+    private String newdate;
+    private String count;
+    private String likec;
 
-    public Article toEntity() { // Article 객체 생성
-        return Article.builder()
+    public Board toEntity() { // Article 객체 생성
+        return Board.builder()
             .title(this.title)
             .content(this.content)
+            .user(this.user)
+            .newdate(this.newdate)
+            .count(this.count)
+            .likec(this.likec)
             .build();
     }
 }
