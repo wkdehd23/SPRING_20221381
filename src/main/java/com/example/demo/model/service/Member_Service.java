@@ -2,13 +2,17 @@ package com.example.demo.model.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
 import com.example.demo.model.repository.MemberRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import com.example.demo.model.domain.*;
 
 @Service
-@Transactional
+@Validated
+@Transactional //트랜색션 처리(클래스 내 모든 메소드 대상)
 @RequiredArgsConstructor
 public class Member_Service {
     private final MemberRepository memberRepository;
@@ -21,7 +25,7 @@ public class Member_Service {
         }
     }
 
-    public Member saveMember(AddMemberRequest request) {
+    public Member saveMember(@Valid AddMemberRequest request) {
         validateDuplicateMember(request); // 이메일 체크 
 
         String encodedPassword = passwordEncoder.encode(request.getPassword());

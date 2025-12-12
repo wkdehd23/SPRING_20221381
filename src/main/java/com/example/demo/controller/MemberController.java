@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.model.domain.Member;
 import com.example.demo.model.service.*;
 
+import jakarta.validation.Valid;
+
 
 @Controller
 public class MemberController {
@@ -23,7 +25,7 @@ public class MemberController {
     }
 
     @PostMapping("/api/members") // 회원 가입 저장
-    public String addmembers(@ModelAttribute AddMemberRequest request) {
+    public String addmembers(@Valid @ModelAttribute AddMemberRequest request) {
         memberService.saveMember(request);
         return "join_end"; // .HTML 연결
     }
@@ -44,4 +46,5 @@ public class MemberController {
             return "login"; // 로그인 실패 시 로그인 페이지로 리다이렉트
         }
     }
+
 }
