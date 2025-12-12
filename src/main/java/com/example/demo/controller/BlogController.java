@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import com.example.demo.model.domain.*;
 import com.example.demo.model.service.*;
 import java.util.Optional;
-import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @Controller // 컨트롤러 어노테이션 명시
