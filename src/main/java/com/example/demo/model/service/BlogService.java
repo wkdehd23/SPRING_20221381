@@ -16,10 +16,6 @@ public class BlogService {
     @Autowired
     private final BlogRepository blogRepository;
 
-    // public List<Article> findAll() {
-    //     return blogRepository.findAll();
-    // }
-    
     public List<Board> findAll() {
         return blogRepository.findAll();
     }
@@ -27,10 +23,6 @@ public class BlogService {
     public Page<Board> findAll(Pageable pageable) {
     return blogRepository.findAll(pageable);
     }
-
-    // public Optional<Article> findById(Long id) { // 게시판 특정 글 조회
-    //     return blogRepository.findById(id);
-    // }
 
     public Optional<Board> findById(Long id) {
         return blogRepository.findById(id);
@@ -41,12 +33,6 @@ public class BlogService {
     } // LIKE 검색 제공(대소문자 무시)
 
     public Board save(AddArticleRequest request) {
-        // DTO가없는경우이곳에직접구현가능
-        // public ResponseEntity<Article> addArticle(@RequestParam String title, @RequestParam String content) {
-        // Article article = Article.builder()
-        // .title(title)
-        // .content(content)
-        // .build();
         return blogRepository.save(request.toEntity());
     }
 
